@@ -53,7 +53,8 @@ RUN apt-get update && apt-get install -y ca-certificates wget --no-install-recom
 ENV PATH $PATH:/usr/local/mysql/bin:/usr/local/mysql/scripts
 
 # build slave node server id
-RUN SERVER_ID="$(date +%s | rev | cut -c 1-2)$(echo ${RANDOM})" 
+RUN SERVER_ID="$(date +%s | rev | cut -c 1-2)$(echo ${RANDOM})"
+RUN echo $SERVER_ID
 
 # replicate some of the way the APT package configuration works
 # this is only for 5.5 since it doesn't have an APT repo, and will go away when 5.5 does
@@ -68,6 +69,8 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
 	} > /etc/mysql/my.cnf
+
+RUN cat /etc/mysql/my.cnf
 
 RUN mkdir -p /var/lib/mysql /var/run/mysqld \
 	&& chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \

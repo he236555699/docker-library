@@ -53,8 +53,8 @@ RUN apt-get update && apt-get install -y ca-certificates wget --no-install-recom
 ENV PATH $PATH:/usr/local/mysql/bin:/usr/local/mysql/scripts
 
 # build slave node server id
-RUN echo "$(date +%s | rev | cut -c 1-2)$(echo ${RANDOM})"
-RUN echo $(date +%s | rev | cut -c 1-2)$(echo ${RANDOM})
+RUN MYSQL_SERVER_ID=echo $(date +%s | rev | cut -c 1-2)$(echo ${RANDOM})
+RUN echo $MYSQL_SERVER_ID
 
 # replicate some of the way the APT package configuration works
 # this is only for 5.5 since it doesn't have an APT repo, and will go away when 5.5 does
@@ -65,7 +65,7 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo 'skip-name-resolve'; \
 		echo 'datadir = /var/lib/mysql'; \
 		echo '!includedir /etc/mysql/conf.d/'; \
-		echo 'server-id = '$(date +%s | rev | cut -c 1-2)$(echo ${RANDOM}); \
+		echo 'server-id = '$MYSQL_SERVER_ID; \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
 	} > /etc/mysql/my.cnf

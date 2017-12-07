@@ -62,6 +62,12 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo 'datadir = /var/lib/mysql'; \
 		echo '!includedir /etc/mysql/conf.d/'; \
 		echo 'server-id = '$(date +%s | rev | cut -c 1-2)$(echo ${RANDOM}); \
+		echo 'log-bin = mysql-bin'; \
+		echo 'relay-log-index = slave-relay-bin.index'; \
+		echo 'relay-log = slave-relay-bin'; \
+		echo 'sync_master_info = 1'; \
+		echo 'sync_relay_log = 1'; \
+		echo 'sync_relay_log_info = 1'; \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
 	} > /etc/mysql/my.cnf

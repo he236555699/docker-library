@@ -62,14 +62,13 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo 'datadir = /var/lib/mysql'; \
 		echo '!includedir /etc/mysql/conf.d/'; \
 		echo 'server-id = 1'; \
+		echo 'log-bin = mysql-bin'; \
+		echo 'relay-log = relay-bin'; \
+		echo 'relay-log-index = relay-bin-index'; \
+		echo 'binlog-ignore-db = mysql'; \
+		echo 'binlog-ignore-db = information_schema'; \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
-		# client configuration
-		echo '[client]'; \
-		echo 'default-character-set = utf8'; \
-		# mysqld safe configuration
-		echo '[mysqld_safe]'; \
-		echo 'log-error = /var/log/mysqld.log'; \
 	} > /etc/mysql/my.cnf
 
 RUN mkdir -p /var/lib/mysql /var/run/mysqld \

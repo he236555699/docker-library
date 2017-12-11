@@ -58,9 +58,30 @@ RUN { \
 		| xargs -0 grep -lZE '^(bind-address|log)' \
 		| xargs -rt -0 sed -Ei 's/^(bind-address|log)/#&/' \
 # don't reverse lookup hostnames, they are usually another container
-	&& echo '[mysqld]\nskip-host-cache\nskip-name-resolve' > /etc/mysql/conf.d/docker.cnf
+	&& { \
+		echo '[mysqld]'; \
+		echo 'skip-host-cache'; \
+		echo 'skip-name-resolve'; \
+		echo 'datadir = /var/lib/mysql'; \
+		echo 'server-id = 1'; \
+		echo 'binlog-format = ROW'; \
+		echo 'log-bin = mysql-bin'; \
+		echo 'log-bin-index = master-bin.index'; \
+		echo 'log-slave-updates = true'; \
+		echo 'gtid-mode = on'; \
+		echo 'enforce-gtid-consistency = true'; \
+		echo 'master-info-repository = TABLE'; \
+		echo 'relay-log-info-repository = TABLE'; \
+		echo 'sync-master-info = 1'; \
+		echo 'slave-parallel-workers = 2'; \
+		echo 'binlog-checksum = CRC32'; \
+		echo 'master-verify-checksum = 1'; \
+		echo 'slave-sql-verify-checksum = 1'; \
+		echo 'binlog-rows-query-log-events = 1'; \
+		echo 'character-set-server = utf8'; \
+		echo 'max_connections = 1500'; \
+	} > /etc/mysql/conf.d/docker.cnf
 
-RUN tail /etc/mysql/my.cnf
 RUN tail /etc/mysql/conf.d/docker.cnf
 
 VOLUME /var/lib/mysql

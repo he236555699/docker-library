@@ -66,7 +66,8 @@ RUN { \
 		echo 'server-id = '$(date +%s | rev | cut -c 1-2)$(echo ${RANDOM}); \
 		echo 'binlog-format = ROW'; \
 		echo 'log-bin = mysql-bin'; \
-		echo 'log-bin-index = master-bin.index'; \
+		echo 'relay-log = slave-relay-bin'; \
+		echo 'relay-log-index = slave-relay-bin.index'; \
 		echo 'log-slave-updates = true'; \
 		echo 'gtid-mode = on'; \
 		echo 'enforce-gtid-consistency = true'; \

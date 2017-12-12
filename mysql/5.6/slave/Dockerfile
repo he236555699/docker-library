@@ -63,6 +63,7 @@ RUN { \
 		echo 'skip-host-cache'; \
 		echo 'skip-name-resolve'; \
 		echo 'datadir = /var/lib/mysql'; \
+		# server id 4个字节的unsigned int 值的范围：0 .. 4294967295
 		echo 'server-id = '$(date +%s); \
 		echo 'binlog-format = ROW'; \
 		echo 'log-bin = mysql-bin'; \

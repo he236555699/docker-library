@@ -63,7 +63,7 @@ RUN { \
 		echo 'skip-host-cache'; \
 		echo 'skip-name-resolve'; \
 		echo 'datadir = /var/lib/mysql'; \
-		echo 'server-id = '$(date +%s | rev | cut -c 1-2)$(echo ${RANDOM}); \
+		echo 'server-id = '$(date +%s); \
 		echo 'binlog-format = ROW'; \
 		echo 'log-bin = mysql-bin'; \
 		echo 'relay-log = slave-relay-bin'; \

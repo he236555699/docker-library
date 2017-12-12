@@ -61,7 +61,7 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo 'skip-name-resolve'; \
 		echo 'datadir = /var/lib/mysql'; \
 		echo '!includedir /etc/mysql/conf.d/'; \
-		echo 'server-id = 'date +%s; \
+		echo 'server-id = '$(date +%s); \
 		echo 'log-bin = mysql-bin'; \
 		echo 'relay-log-index = slave-relay-bin.index'; \
 		echo 'relay-log = slave-relay-bin'; \

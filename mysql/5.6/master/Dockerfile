@@ -82,7 +82,7 @@ RUN { \
 		echo 'max_connections = 1500'; \
 	} > /etc/mysql/conf.d/docker.cnf
 
-RUN tail /etc/mysql/conf.d/docker.cnf
+RUN cat /etc/mysql/conf.d/docker.cnf
 
 VOLUME /var/lib/mysql
 

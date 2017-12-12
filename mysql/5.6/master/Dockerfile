@@ -67,9 +67,9 @@ RUN { \
 		echo 'binlog-format = ROW'; \
 		echo 'log-bin = mysql-bin'; \
 		echo 'log-bin-index = master-bin.index'; \
-		echo 'log-slave-updates = true'; \
+		echo 'log-slave-updates = 1'; \
 		echo 'gtid-mode = on'; \
-		echo 'enforce-gtid-consistency = true'; \
+		echo 'enforce-gtid-consistency = 1'; \
 		echo 'master-info-repository = TABLE'; \
 		echo 'relay-log-info-repository = TABLE'; \
 		echo 'sync-master-info = 1'; \

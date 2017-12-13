@@ -63,6 +63,7 @@ RUN { \
 		echo 'skip-host-cache'; \
 		echo 'skip-name-resolve'; \
 		echo 'datadir = /var/lib/mysql'; \
+		echo 'read-only = 1'; \
 		# server id 4个字节的unsigned int 值的范围：0 .. 4294967295
 		echo 'server-id = '$(date +%s); \
 		echo 'binlog-format = ROW'; \
@@ -70,6 +71,7 @@ RUN { \
 		echo 'relay-log = slave-relay-bin'; \
 		echo 'relay-log-index = slave-relay-bin.index'; \
 		echo 'log-slave-updates = 1'; \
+		echo 'skip_slave_start = 1'; \
 		echo 'gtid-mode = on'; \
 		echo 'enforce-gtid-consistency = 1'; \
 		echo 'master-info-repository = TABLE'; \

@@ -68,6 +68,7 @@ RUN { \
 		echo 'log-bin = mysql-bin'; \
 		echo 'log-bin-index = master-bin.index'; \
 		echo 'log-slave-updates = 1'; \
+		echo 'skip_slave_start = 1'; \
 		echo 'gtid-mode = on'; \
 		echo 'enforce-gtid-consistency = 1'; \
 		echo 'master-info-repository = TABLE'; \

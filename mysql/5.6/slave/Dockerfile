@@ -78,6 +78,7 @@ RUN { \
 		echo 'relay-log-info-repository = TABLE'; \
 		echo 'sync-master-info = 1'; \
 		echo 'slave-parallel-workers = 2'; \
+		echo 'binlog-checksum = CRC32'; \
 		echo 'master-verify-checksum = 1'; \
 		echo 'slave-sql-verify-checksum = 1'; \
 		echo 'binlog-rows-query-log-events = 1'; \

@@ -166,7 +166,7 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 			echo 'FLUSH PRIVILEGES ;' | "${mysql[@]}"
 		fi
 
-		# set replication user configuration
+		# create replication user
 		file_env 'MYSQL_REPLICATION_USER'
 		file_env 'MYSQL_REPLICATION_PASSWORD'
 		if [ "$MYSQL_REPLICATION_USER" -a "$MYSQL_REPLICATION_PASSWORD" ]; then

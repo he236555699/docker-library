@@ -72,10 +72,10 @@ RUN { \
 		echo 'log-bin = mysql-bin'; \
 		echo 'relay-log = slave-relay-bin'; \
 		echo 'relay-log-index = slave-relay-bin.index'; \
-		echo 'log-slave-updates = 1'; \
+		echo 'log-slave-updates = ON'; \
 		echo 'skip_slave_start = 1'; \
 		echo 'gtid-mode = on'; \
-		echo 'enforce-gtid-consistency = 1'; \
+		echo 'enforce-gtid-consistency = ON'; \
 		echo 'master-info-repository = TABLE'; \
 		echo 'relay-log-info-repository = TABLE'; \
 		echo 'sync-master-info = 1'; \

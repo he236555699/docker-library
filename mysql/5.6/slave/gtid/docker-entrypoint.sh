@@ -204,3 +204,4 @@ fi
 
 echo "execution: $@"
 exec "$@"
+echo "START SLAVE;" | "${mysql[@]}"

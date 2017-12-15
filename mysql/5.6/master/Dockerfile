@@ -65,6 +65,8 @@ RUN { \
 		echo 'datadir = /var/lib/mysql'; \
 		echo 'server-id = 1'; \
 		echo 'binlog-format = ROW'; \
+		echo 'binlog-ignore-db = mysql'; \
+		echo 'binlog-ignore-db = information_schema'; \
 		echo 'log-bin = mysql-bin'; \
 		echo 'log-bin-index = master-bin.index'; \
 		echo 'log-slave-updates = 1'; \

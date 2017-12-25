@@ -177,9 +177,11 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 		file_env 'MYSQL_REPLICATION_USER'
 		file_env 'MYSQL_REPLICATION_PASSWORD'
 		if [ "$MYSQL_REPLICATION_USER" -a "$MYSQL_REPLICATION_PASSWORD" ]; then
-			echo "STOP SLAVE;" | "${mysql[@]}" 
-			echo "CHANGE MASTER TO MASTER_HOST='$MYSQL_MASTER_57_SERVER_SERVICE_HOST', MASTER_USER='$MYSQL_REPLICATION_USER', MASTER_PASSWORD='$MYSQL_REPLICATION_PASSWORD';" | "${mysql[@]}" 
-			echo "START SLAVE;" | "${mysql[@]}"
+			if ["$MYSQL_MASTER_SERVICE_NAME"]; then
+				echo "STOP SLAVE;" | "${mysql[@]}" 
+				echo "CHANGE MASTER TO MASTER_HOST='$MYSQL_MASTER_SERVICE_NAME', MASTER_USER='$MYSQL_REPLICATION_USER', MASTER_PASSWORD='$MYSQL_REPLICATION_PASSWORD';" | "${mysql[@]}" 
+				echo "START SLAVE;" | "${mysql[@]}"
+			fi
 		fi
 
 		echo

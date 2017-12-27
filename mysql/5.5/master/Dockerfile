@@ -58,7 +58,7 @@ RUN mkdir -p /etc/mysql/conf.d \
 	&& { \
 		echo '[mysqld]'; \
 		echo 'skip-host-cache'; \
-		echo 'skip-name-resolve'; \
+		#echo 'skip-name-resolve'; \
 		echo 'datadir = /var/lib/mysql'; \
 		echo '!includedir /etc/mysql/conf.d/'; \
 		echo 'server-id = 1'; \

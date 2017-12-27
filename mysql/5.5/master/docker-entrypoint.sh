@@ -175,13 +175,6 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 			echo 'FLUSH PRIVILEGES ;' | "${mysql[@]}"
 		fi
 
-		# mysql upgrade system table
-		if [ ! -z "$MYSQL_ROOT_PASSWORD" ]; then
-			echo "mysql upgrade system table start"
-			mysql_upgrade -u root -p $MYSQL_ROOT_PASSWORD
-			echo "mysql upgrade system table end"
-		fi
-
 		echo
 		for f in /docker-entrypoint-initdb.d/*; do
 			case "$f" in
@@ -210,3 +203,10 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 fi
 
 exec "$@"
+
+# mysql upgrade system table
+if [ ! -z "$MYSQL_ROOT_PASSWORD" ]; then
+	echo "mysql upgrade system table start"
+	mysql_upgrade -u root -p $MYSQL_ROOT_PASSWORD
+	echo "mysql upgrade system table end"
+fi

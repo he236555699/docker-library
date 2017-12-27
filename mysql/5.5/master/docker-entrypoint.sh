@@ -197,9 +197,9 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 		fi
 
 		# mysql upgrade system table
-		if [ "$MYSQL_USER" -a "$MYSQL_PASSWORD" ]; then
+		if [ ! -z "$MYSQL_ROOT_PASSWORD" ]; then
 			echo "mysql upgrade system table start"
-			mysql_upgrade -u $MYSQL_USER -p $MYSQL_PASSWORD
+			mysql_upgrade -u root -p $MYSQL_ROOT_PASSWORD
 			echo "mysql upgrade system table end"
 		fi
 

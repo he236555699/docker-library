@@ -196,6 +196,13 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 			exit 1
 		fi
 
+		# mysql upgrade system table
+		if [ "$MYSQL_USER" -a "$MYSQL_PASSWORD" ]; then
+			echo "mysql upgrade system table start"
+			mysql_upgrade -u $MYSQL_USER -p $MYSQL_PASSWORD
+			echo "mysql upgrade system table end"
+		fi
+
 		echo
 		echo 'MySQL init process done. Ready for start up.'
 		echo

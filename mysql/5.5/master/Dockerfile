@@ -57,6 +57,7 @@ ENV PATH $PATH:/usr/local/mysql/bin:/usr/local/mysql/scripts
 RUN mkdir -p /etc/mysql/conf.d \
 	&& { \
 		echo '[mysqld]'; \
+		echo 'federated'; \
 		echo 'skip-host-cache'; \
 		#echo 'skip-name-resolve'; \
 		echo 'datadir = /var/lib/mysql'; \

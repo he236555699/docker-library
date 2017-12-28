@@ -73,7 +73,7 @@ RUN groupadd -r mysql && useradd -r -g mysql mysql \
 VOLUME /var/lib/mysql
 
 COPY docker-entrypoint.sh /usr/local/bin/
-RUN && chmod 777 /usr/local/bin/docker-entrypoint.sh \
+RUN chmod 777 /usr/local/bin/docker-entrypoint.sh \
 	# backwards compat
 	&& ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]

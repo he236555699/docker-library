@@ -70,10 +70,15 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo 'binlog-ignore-db = information_schema'; \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
+		# log
+		echo 'log-error = /var/log/mysql/error.log'; \
+		echo 'log = /var/log/mysql/mysql.log'; \
+		echo 'long_query_time = 2'; \
+		echo 'log-slow-queries = /var/log/mysql/slowquery.log'; \
 	} > /etc/mysql/my.cnf
 
-RUN mkdir -p /var/lib/mysql /var/run/mysqld \
-	&& chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \
+RUN mkdir -p /var/lib/mysql /var/run/mysqld /var/log/mysql \
+	&& chown -R mysql:mysql /var/lib/mysql /var/run/mysqld /var/log/mysql \
 # ensure that /var/run/mysqld (used for socket and lock files) is writable regardless of the UID our mysqld instance ends up having at runtime
 	&& chmod 777 /var/run/mysqld
 

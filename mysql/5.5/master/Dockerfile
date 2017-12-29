@@ -72,7 +72,7 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo 'max_connections = 1500'; \
 		# log configuration
 		echo 'log-error = /var/log/mysql/error.log'; \
-		echo 'log_slow_queries = ON'; \
+		echo 'slow-query-log = 1'; \
 		echo 'long_query_time = 2'; \
 		echo 'slow_query_log_file = /var/log/mysql/slowquery.log'; \
 	} > /etc/mysql/my.cnf

@@ -70,11 +70,11 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo 'binlog-ignore-db = information_schema'; \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
-		# log
+		# log configuration
 		echo 'log-error = /var/log/mysql/error.log'; \
-		echo 'log = /var/log/mysql/mysql.log'; \
+		echo 'log_slow_queries = ON'; \
 		echo 'long_query_time = 2'; \
-		echo 'log-slow-queries = /var/log/mysql/slowquery.log'; \
+		echo 'slow_query_log_file = /var/log/mysql/slowquery.log'; \
 	} > /etc/mysql/my.cnf
 
 RUN mkdir -p /var/lib/mysql /var/run/mysqld /var/log/mysql \

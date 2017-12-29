@@ -200,15 +200,16 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 		echo 'MySQL init process done. Ready for start up.'
 		echo
 	fi
-fi
 
-# mysql upgrade system table
-if [ ! -z "$MYSQL_ROOT_PASSWORD" ]; then
-	echo "mysql upgrade system table start"
-	mysql_upgrade -u root -p <<-EOF
-		$MYSQL_ROOT_PASSWORD
-	EOF
-	echo "mysql upgrade system table end"
+	# mysql upgrade system table
+	if [ ! -z "$MYSQL_ROOT_PASSWORD" ]; then
+		echo "mysql upgrade system table start"
+		mysql_upgrade -u root -p <<-EOF
+			$MYSQL_ROOT_PASSWORD
+		EOF
+		echo "mysql upgrade system table end"
+	fi
+
 fi
 
 exec "$@"

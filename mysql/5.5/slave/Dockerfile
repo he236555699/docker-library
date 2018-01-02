@@ -58,7 +58,7 @@ RUN mkdir -p /etc/mysql/conf.d \
 	&& { \
 		echo '[mysqld]'; \
 		echo 'skip-host-cache'; \
-		echo 'skip-name-resolve'; \
+		# echo 'skip-name-resolve'; \
 		echo 'datadir = /var/lib/mysql'; \
 		echo '!includedir /etc/mysql/conf.d/'; \
 		# server id 4个字节的unsigned int 值的范围：0 .. 4294967295
@@ -71,12 +71,17 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo 'sync_relay_log_info = 1'; \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
+		# log configuration
+		echo 'log-error = /var/log/mysql/error.log'; \
+		echo 'slow-query-log = 1'; \
+		echo 'long_query_time = 2'; \
+		echo 'slow_query_log_file = /var/log/mysql/slowquery.log'; \
 	} > /etc/mysql/my.cnf
 
 RUN cat /etc/mysql/my.cnf
 
-RUN mkdir -p /var/lib/mysql /var/run/mysqld \
-	&& chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \
+RUN mkdir -p /var/lib/mysql /var/run/mysqld /var/log/mysql \
+	&& chown -R mysql:mysql /var/lib/mysql /var/run/mysqld /var/log/mysql \
 # ensure that /var/run/mysqld (used for socket and lock files) is writable regardless of the UID our mysqld instance ends up having at runtime
 	&& chmod 777 /var/run/mysqld
 

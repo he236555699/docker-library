@@ -55,8 +55,8 @@ RUN { \
 		echo mysql-community-server mysql-community-server/remove-test-db select false; \
 	} | debconf-set-selections \
 	&& apt-get update && apt-get install -y mysql-server="${MYSQL_VERSION}" && rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql /var/run/mysqld \
-	&& chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \
+	&& rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql /var/run/mysqld /var/log/mysql \
+	&& chown -R mysql:mysql /var/lib/mysql /var/run/mysqld /var/log/mysql \
 # ensure that /var/run/mysqld (used for socket and lock files) is writable regardless of the UID our mysqld instance ends up having at runtime
 	&& chmod 777 /var/run/mysqld \
 # comment out a few problematic configuration values
@@ -80,6 +80,11 @@ RUN { \
 		echo 'sync_relay_log_info = 1'; \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
+		# log configuration
+		echo 'log-error = /var/log/mysql/error.log'; \
+		echo 'slow-query-log = 1'; \
+		echo 'long_query_time = 2'; \
+		echo 'slow_query_log_file = /var/log/mysql/slowquery.log'; \
 	} > /etc/mysql/conf.d/docker.cnf
 
 VOLUME /var/lib/mysql

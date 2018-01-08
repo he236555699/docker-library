@@ -64,6 +64,7 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo '!includedir /etc/mysql/conf.d/'; \
 		echo 'server-id = 1'; \
 		echo 'character-set-server = utf8'; \
+		echo 'expire_logs_days = 3'; \
 		echo 'max_connections = 1500'; \
 		# log configuration
 		echo 'log-error = /var/log/mysql/error.log'; \

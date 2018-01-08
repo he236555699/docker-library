@@ -68,13 +68,11 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo 'relay-log-index = relay-bin-index'; \
 		echo 'binlog-ignore-db = mysql'; \
 		echo 'binlog-ignore-db = information_schema'; \
+		echo 'expire_logs_days = 3'; \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
 		# log configuration
 		echo 'log-error = /var/log/mysql/error.log'; \
-		echo 'slow-query-log = 1'; \
-		echo 'long_query_time = 2'; \
-		echo 'slow_query_log_file = /var/log/mysql/slowquery.log'; \
 	} > /etc/mysql/my.cnf
 
 RUN mkdir -p /var/lib/mysql /var/run/mysqld /var/log/mysql \

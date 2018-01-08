@@ -78,13 +78,11 @@ RUN { \
 		echo 'sync_master_info = 1'; \
 		echo 'sync_relay_log = 1'; \
 		echo 'sync_relay_log_info = 1'; \
+		echo 'expire_logs_days = 3'; \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
 		# log configuration
 		echo 'log-error = /var/log/mysql/error.log'; \
-		echo 'slow-query-log = 1'; \
-		echo 'long_query_time = 2'; \
-		echo 'slow_query_log_file = /var/log/mysql/slowquery.log'; \
 	} > /etc/mysql/conf.d/docker.cnf
 
 VOLUME /var/lib/mysql

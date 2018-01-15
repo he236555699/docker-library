@@ -180,6 +180,7 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 			if ["$MYSQL_MASTER_SERVICE_NAME"]; then
 				echo "STOP SLAVE;" | "${mysql[@]}" 
 				echo "CHANGE MASTER TO MASTER_HOST='$MYSQL_MASTER_SERVICE_NAME', MASTER_USER='$MYSQL_REPLICATION_USER', MASTER_PASSWORD='$MYSQL_REPLICATION_PASSWORD';" | "${mysql[@]}" 
+				echo "CHANGE MASTER TO MASTER_HEARTBEAT_PERIOD = 10;" | "${mysql[@]}"
 				echo "START SLAVE;" | "${mysql[@]}"
 			fi
 		fi

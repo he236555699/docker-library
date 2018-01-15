@@ -81,6 +81,7 @@ RUN { \
 		echo 'expire_logs_days = 3'; \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
+		echo 'slave_net_timeout = 10'; \
 		# log configuration
 		echo 'log-error = /var/log/mysql/error.log'; \
 	} > /etc/mysql/conf.d/docker.cnf

@@ -82,6 +82,12 @@ RUN { \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \
 		echo 'slave_net_timeout = 10'; \
+		# 5.7并行复制
+		echo 'slave-parallel-type = LOGICAL_CLOCK'; \
+		echo 'slave-parallel-workers = 16'; \
+		echo 'master_info_repository = TABLE'; \
+		echo 'relay_log_info_repository = TABLE'; \
+		echo 'relay_log_recovery = ON'; \
 		# log configuration
 		echo 'log-error = /var/log/mysql/error.log'; \
 	} > /etc/mysql/conf.d/docker.cnf

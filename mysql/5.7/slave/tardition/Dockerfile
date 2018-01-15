@@ -72,22 +72,22 @@ RUN { \
 		echo '!includedir /etc/mysql/conf.d/'; \
 		# server id 4个字节的unsigned int 值的范围：0 .. 4294967295
 		echo 'server-id = '$(date +%s); \
-		echo 'log-bin = mysql-bin'; \
+		# 主从同步
 		echo 'relay-log-index = slave-relay-bin.index'; \
 		echo 'relay-log = slave-relay-bin'; \
 		echo 'sync_master_info = 1'; \
 		echo 'sync_relay_log = 1'; \
 		echo 'sync_relay_log_info = 1'; \
-		echo 'expire_logs_days = 3'; \
-		echo 'character-set-server = utf8'; \
-		echo 'max_connections = 1500'; \
-		echo 'slave_net_timeout = 10'; \
-		# 5.7并行复制
 		echo 'slave-parallel-type = LOGICAL_CLOCK'; \
 		echo 'slave-parallel-workers = 16'; \
 		echo 'master_info_repository = TABLE'; \
 		echo 'relay_log_info_repository = TABLE'; \
 		echo 'relay_log_recovery = ON'; \
+
+		echo 'expire_logs_days = 3'; \
+		echo 'character-set-server = utf8'; \
+		echo 'max_connections = 1500'; \
+		echo 'slave_net_timeout = 10'; \
 		# log configuration
 		echo 'log-error = /var/log/mysql/error.log'; \
 	} > /etc/mysql/conf.d/docker.cnf

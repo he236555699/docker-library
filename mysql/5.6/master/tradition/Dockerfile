@@ -66,8 +66,7 @@ RUN { \
 		echo '!includedir /etc/mysql/conf.d/'; \
 		echo 'server-id = 1'; \
 		echo 'log-bin = mysql-bin'; \
-		echo 'relay-log = relay-bin'; \
-		echo 'relay-log-index = relay-bin-index'; \
+		echo 'sync_binlog = 1'; \
 		echo 'binlog-ignore-db = mysql'; \
 		echo 'binlog-ignore-db = information_schema'; \
 		echo 'expire_logs_days = 3'; \

@@ -83,7 +83,6 @@ RUN { \
 		echo 'master_info_repository = TABLE'; \
 		echo 'relay_log_info_repository = TABLE'; \
 		echo 'relay_log_recovery = ON'; \
-
 		echo 'expire_logs_days = 3'; \
 		echo 'character-set-server = utf8'; \
 		echo 'max_connections = 1500'; \

@@ -66,7 +66,10 @@ RUN { \
 		echo '!includedir /etc/mysql/conf.d/'; \
 		echo 'server-id = 1'; \
 		echo 'log-bin = mysql-bin'; \
+		echo 'log-bin-index = mysql-bin.index'; \
 		echo 'sync_binlog = 1'; \
+		echo 'binlog_format = row'; \
+		echo 'binlog-row-image = minimal'; \
 		echo 'binlog-ignore-db = mysql'; \
 		echo 'binlog-ignore-db = information_schema'; \
 		echo 'expire_logs_days = 3'; \

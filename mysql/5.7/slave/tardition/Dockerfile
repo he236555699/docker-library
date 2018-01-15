@@ -72,6 +72,9 @@ RUN { \
 		echo '!includedir /etc/mysql/conf.d/'; \
 		# server id 4个字节的unsigned int 值的范围：0 .. 4294967295
 		echo 'server-id = '$(date +%s); \
+		echo 'log-bin = mysql-bin'; \
+		echo 'log_slave_updates = 1'; \
+
 		# 主从同步
 		echo 'relay-log-index = slave-relay-bin.index'; \
 		echo 'relay-log = slave-relay-bin'; \

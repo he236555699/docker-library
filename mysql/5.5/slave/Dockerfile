@@ -77,8 +77,6 @@ RUN mkdir -p /etc/mysql/conf.d \
 		echo 'log-error = /var/log/mysql/error.log'; \
 	} > /etc/mysql/my.cnf
 
-RUN cat /etc/mysql/my.cnf
-
 RUN mkdir -p /var/lib/mysql /var/run/mysqld /var/log/mysql \
 	&& chown -R mysql:mysql /var/lib/mysql /var/run/mysqld /var/log/mysql \
 # ensure that /var/run/mysqld (used for socket and lock files) is writable regardless of the UID our mysqld instance ends up having at runtime

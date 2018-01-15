@@ -80,6 +80,7 @@ RUN { \
 		echo 'sync_relay_log_info = 1'; \
 		echo 'slave-parallel-type = LOGICAL_CLOCK'; \
 		echo 'slave-parallel-workers = 16'; \
+		echo 'slave_preserve_commit_order = 1'; \
 		echo 'master_info_repository = TABLE'; \
 		echo 'relay_log_info_repository = TABLE'; \
 		echo 'relay_log_recovery = 1'; \

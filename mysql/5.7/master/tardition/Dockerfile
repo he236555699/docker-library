@@ -71,7 +71,10 @@ RUN { \
 		echo 'datadir = /var/lib/mysql'; \
 		echo '!includedir /etc/mysql/conf.d/'; \
 		echo 'server-id = 1'; \
-		echo 'log-bin = mysql-bin'; \
+		echo 'gtid_mode = on'; \
+		echo 'enforce_gtid_consistency = on'; \
+		echo 'log-bin = master-bin'; \
+		echo 'log-slave-updates = 1'; \
 		echo 'log-bin-index = mysql-bin.index'; \
 		echo 'sync_binlog = 1'; \
 		echo 'binlog_format = row'; \

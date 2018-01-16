@@ -1,7 +1,13 @@
 FROM debian:jessie
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd -r mysql && useradd -r -g mysql mysql
+RUN groupadd -r mysql && useradd -r -g mysql mysql \
+	# 更新apt-get源 使用163的源
+	&& mv /etc/apt/sources.list /etc/apt/sources.list.bak && \
+    echo "deb http://mirrors.163.com/debian/ jessie main non-free contrib" >/etc/apt/sources.list && \
+    echo "deb http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb-src http://mirrors.163.com/debian/ jessie main non-free contrib" >>/etc/apt/sources.list && \
+    echo "deb-src http://mirrors.163.com/debian/ jessie-proposed-updates main non-free contrib" >>/etc/apt/sources.list
 
 # add gosu for easy step-down from root
 ENV GOSU_VERSION 1.7

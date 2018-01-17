@@ -77,7 +77,8 @@ RUN { \
 		echo 'enforce_gtid_consistency = on'; \
 		echo 'binlog_format = row'; \
 		echo 'sync_binlog = 0'; \
-		echo 'innodb_flush_log_at_trx_commit'; \
+		echo 'innodb_flush_log_at_trx_commit = 2'; \
+		echo 'innodb_locks_unsafe_for_binlog = 1'; \
 		echo 'relay-log-index = slave-relay-bin.index'; \
 		echo 'relay-log = slave-relay-bin'; \
 		echo 'sync_master_info = 1'; \

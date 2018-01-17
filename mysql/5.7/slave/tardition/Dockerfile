@@ -72,12 +72,12 @@ RUN { \
 		echo '!includedir /etc/mysql/conf.d/'; \
 		# server id 4个字节的unsigned int 值的范围：0 .. 4294967295
 		echo 'server-id = '$(date +%s); \
+		# 主从同步
 		echo 'gtid_mode = on'; \
 		echo 'enforce_gtid_consistency = on'; \
-		echo 'log-bin = slave-bin'; \
-		echo 'log_slave_updates = 1'; \
 		echo 'binlog_format = row'; \
-		# 主从同步
+		echo 'sync_binlog = 0'; \
+		echo 'innodb_flush_log_at_trx_commit'; \
 		echo 'relay-log-index = slave-relay-bin.index'; \
 		echo 'relay-log = slave-relay-bin'; \
 		echo 'sync_master_info = 1'; \

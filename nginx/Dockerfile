@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-RUN yum install -y vim
+RUN apt-get -y install -y vim
 
 EXPOSE 80
 CMD ["nginx"]

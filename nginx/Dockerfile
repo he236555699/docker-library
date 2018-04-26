@@ -11,7 +11,7 @@ RUN { \
 		echo '		proxy_pass mysql-56-server.development;'; \
 		echo '	}'; \
 		echo '}'; \
-	} >> /etc/nginx/nginx.conf
+	} > /etc/nginx/conf.d/server.conf
 
 EXPOSE 80
 CMD ["nginx"]

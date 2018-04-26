@@ -8,7 +8,7 @@ RUN { \
 		echo '		server_name */mysql;'; \
 		echo '		proxy_connect_timeout 1s;'; \
 		echo '		proxy_timeout 3s;'; \
-		echo '		proxy_pass mysql-56-server.development:3306;'; \
+		echo '		proxy_pass mysql-56-server.development;'; \
 		echo '	}'; \
 		echo '}'; \
 	} >> /etc/nginx/nginx.conf

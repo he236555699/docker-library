@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-RUN{ \
+RUN { \
 		echo ''; \
 		echo 'stream {'; \
 		echo '	server {'; \

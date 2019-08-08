@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-RUN{ \
+RUN { \
 		echo ''; \
 		echo 'stream {'; \
 		echo '	server {'; \
@@ -11,7 +11,7 @@ RUN{ \
 		echo '		proxy_pass kube-dns.kube-system.svc.cluster.local:3306;'; \
 		echo '	}'; \
 		echo '}'; \
-	} > /etc/mysql/conf.d/docker.cnf
+	} > /etc/nginx/nginx.conf
 
 EXPOSE 80
 CMD ["nginx"]
